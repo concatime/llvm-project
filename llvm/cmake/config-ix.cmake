@@ -346,12 +346,7 @@ if (CMAKE_COMPILER_IS_GNUCXX)
   endif()
 endif()
 
-# By default, we target the host, but this can be overridden at CMake
-# invocation time.
-include(GetHostTriple)
-get_host_triple(LLVM_INFERRED_HOST_TRIPLE)
-
-set(LLVM_HOST_TRIPLE "${LLVM_INFERRED_HOST_TRIPLE}" CACHE STRING
+set(LLVM_HOST_TRIPLE "x86-unknown-linux-musl" CACHE STRING
     "Host on which LLVM binaries will run")
 
 # Determine the native architecture.
