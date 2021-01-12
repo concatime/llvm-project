@@ -79,7 +79,7 @@ int main()
                                 std::char_traits<char> >::value), "");
     static_assert((std::is_same<std::basic_string<char>::allocator_type,
                                 std::allocator<char> >::value), "");
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     test<std::char_traits<char>, min_allocator<char> >();
 #endif
 }

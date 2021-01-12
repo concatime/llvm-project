@@ -12,9 +12,7 @@
 // make sure that we can hash enumeration values
 // Not very portable
 
-#include "test_macros.h"
-
-#if TEST_STD_VER >= 14
+#if __cplusplus >= 201402L
 
 #include <functional>
 #include <cassert>
@@ -37,7 +35,7 @@ test()
     static_assert((std::is_same<typename H::argument_type, T>::value), "" );
     static_assert((std::is_same<typename H::result_type, std::size_t>::value), "" );
     typedef typename std::underlying_type<T>::type under_type;
-
+    
     H h1;
     std::hash<under_type> h2;
     for (int i = 0; i <= 5; ++i)

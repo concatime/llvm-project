@@ -14,8 +14,6 @@
 
 // This tests a conforming extension
 
-// UNSUPPORTED: c++98, c++03
-
 #include <vector>
 #include <cassert>
 
@@ -31,6 +29,7 @@ struct some_alloc
 
 int main()
 {
+#if __has_feature(cxx_noexcept)
     {
         typedef std::vector<MoveOnly> C;
         static_assert(std::is_nothrow_move_constructible<C>::value, "");
@@ -52,4 +51,5 @@ int main()
         static_assert(!std::is_nothrow_move_constructible<C>::value, "");
 #endif
     }
+#endif
 }

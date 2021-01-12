@@ -38,7 +38,7 @@ int main()
         c.clear();
         assert(c.size() == 0);
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
         typedef std::unordered_multiset<int, std::hash<int>,
                                       std::equal_to<int>, min_allocator<int>> C;

@@ -7,8 +7,6 @@
 //
 //===----------------------------------------------------------------------===//
 
-// UNSUPPORTED: c++98, c++03
-
 // <list>
 
 // void swap(list& c)
@@ -23,7 +21,6 @@
 #include <list>
 #include <cassert>
 
-#include "test_macros.h"
 #include "MoveOnly.h"
 #include "test_allocator.h"
 
@@ -31,7 +28,7 @@ template <class T>
 struct some_alloc
 {
     typedef T value_type;
-
+    
     some_alloc() {}
     some_alloc(const some_alloc&);
     void deallocate(void*, unsigned) {}
@@ -43,7 +40,7 @@ template <class T>
 struct some_alloc2
 {
     typedef T value_type;
-
+    
     some_alloc2() {}
     some_alloc2(const some_alloc2&);
     void deallocate(void*, unsigned) {}
@@ -54,6 +51,7 @@ struct some_alloc2
 
 int main()
 {
+#if __has_feature(cxx_noexcept)
     {
         typedef std::list<MoveOnly> C;
         C c1, c2;
@@ -88,4 +86,5 @@ int main()
     }
 #endif
 
+#endif
 }

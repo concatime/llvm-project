@@ -7,7 +7,6 @@
 //
 //===----------------------------------------------------------------------===//
 
-// UNSUPPORTED: c++98, c++03, c++11
 // utilities
 
 // exchange
@@ -18,6 +17,7 @@
 
 int main()
 {
+#if _LIBCPP_STD_VER > 11
     {
     int v = 12;
     assert ( std::exchange ( v, 23 ) == 12 );
@@ -27,7 +27,7 @@ int main()
 
     assert ((std::exchange<int, float> ( v, {} )) == 67 );
     assert ( v == 0 );
-
+    
     }
 
     {
@@ -48,9 +48,11 @@ int main()
     s3 = s2; // Dad
     assert ( std::exchange ( s3, {} ) == s2 );
     assert ( s3.size () == 0 );
-
+    
     s3 = s2; // Dad
     assert ( std::exchange ( s3, "" ) == s2 );
     assert ( s3.size () == 0 );
     }
+
+#endif
 }

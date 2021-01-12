@@ -7,6 +7,7 @@
 //
 //===----------------------------------------------------------------------===//
 
+// XFAIL: libcpp-no-exceptions
 // template <class charT>
 //     explicit bitset(const charT* str,
 //                     typename basic_string<charT>::size_type n = basic_string<charT>::npos,
@@ -17,19 +18,20 @@
 #include <algorithm> // for 'min' and 'max'
 #include <stdexcept> // for 'invalid_argument'
 
-#include "test_macros.h"
+#pragma clang diagnostic ignored "-Wtautological-compare"
 
 template <std::size_t N>
 void test_char_pointer_ctor()
 {
     {
-#ifndef TEST_HAS_NO_EXCEPTIONS
-        try {
-            std::bitset<N> v("xxx1010101010xxxx");
-            assert(false);
-        }
-        catch (std::invalid_argument&) {}
-#endif
+    try
+    {
+        std::bitset<N> v("xxx1010101010xxxx");
+        assert(false);
+    }
+    catch (std::invalid_argument&)
+    {
+    }
     }
 
     {

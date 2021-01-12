@@ -7,10 +7,11 @@
 //
 //===----------------------------------------------------------------------===//
 
-// UNSUPPORTED: c++98, c++03, c++11
 // <experimental/type_traits>
 
 #include <experimental/type_traits>
+
+#if _LIBCPP_STD_VER > 11
 
 namespace ex = std::experimental;
 
@@ -96,4 +97,6 @@ int main()
         static_assert(ex::is_member_pointer_v<T> == std::is_member_pointer<T>::value, "");
     }
 }
-
+#else /* _LIBCPP_STD_VER <= 11 */
+int main() {}
+#endif /* _LIBCPP_STD_VER > 11 */

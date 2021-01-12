@@ -27,7 +27,7 @@ int main()
     assert(d[2] == false);
     assert(d[3] == true);
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
     std::vector<bool, min_allocator<bool>> d = {true, false, false, true};
     assert(d.size() == 4);

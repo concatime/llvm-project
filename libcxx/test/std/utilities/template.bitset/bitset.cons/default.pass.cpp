@@ -12,25 +12,18 @@
 #include <bitset>
 #include <cassert>
 
-#include "test_macros.h"
+#pragma clang diagnostic ignored "-Wtautological-compare"
 
 template <std::size_t N>
 void test_default_ctor()
 {
     {
-        TEST_CONSTEXPR std::bitset<N> v1;
-        assert(v1.size() == N);
-        for (std::size_t i = 0; i < N; ++i)
-            assert(v1[i] == false);
+    _LIBCPP_CONSTEXPR std::bitset<N> v1;
+    assert(v1.size() == N);
+    for (std::size_t i = 0; i < N; ++i)
+        assert(v1[i] == false);
     }
-#if TEST_STD_VER >= 11
-    {
-        constexpr std::bitset<N> v1;
-        static_assert(v1.size() == N, "");
-    }
-#endif
 }
-
 
 int main()
 {

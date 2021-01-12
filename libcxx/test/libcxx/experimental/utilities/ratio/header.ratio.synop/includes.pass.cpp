@@ -7,15 +7,16 @@
 //
 //===----------------------------------------------------------------------===//
 
-// UNSUPPORTED: c++98, c++03, c++11
 // <experimental/ratio>
 
 // Test that <ratio> is included.
 
 #include <experimental/ratio>
 
-#ifndef _LIBCPP_RATIO
-#  error " <experimental/ratio> must include <ratio>"
+#if _LIBCPP_STD_VER > 11
+# ifndef _LIBCPP_RATIO
+#   error " <experimental/ratio> must include <ratio>"
+# endif
 #endif
 
 int main()

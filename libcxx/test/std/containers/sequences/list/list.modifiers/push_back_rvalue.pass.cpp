@@ -30,7 +30,7 @@ int main()
     assert(l1.front() == MoveOnly(1));
     assert(l1.back() == MoveOnly(2));
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
     std::list<MoveOnly, min_allocator<MoveOnly>> l1;
     l1.push_back(MoveOnly(1));

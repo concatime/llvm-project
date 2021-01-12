@@ -89,7 +89,7 @@ int main()
     test_is_not_copy_constructible<void>();
     test_is_not_copy_constructible<Abstract>();
     test_is_not_copy_constructible<C>();
-#if TEST_STD_VER >= 11
+#if __has_feature(cxx_access_control_sfinae) 
     test_is_not_copy_constructible<B>();
 #endif
 }

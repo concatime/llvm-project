@@ -89,7 +89,7 @@ int main()
         for (; j < v.size(); ++j)
             assert(v[j] == 0);
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
         std::vector<bool, min_allocator<bool>> v(100);
         bool a[] = {1, 0, 0, 1, 1};

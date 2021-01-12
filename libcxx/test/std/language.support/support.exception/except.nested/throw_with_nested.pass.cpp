@@ -18,8 +18,6 @@
 #include <cstdlib>
 #include <cassert>
 
-#include "test_macros.h"
-
 class A
 {
     int data_;
@@ -39,7 +37,7 @@ public:
     friend bool operator==(const B& x, const B& y) {return x.data_ == y.data_;}
 };
 
-#if TEST_STD_VER > 11
+#if __cplusplus > 201103L
 struct Final final {};
 #endif
 
@@ -107,14 +105,14 @@ int main()
             assert(i == 7);
         }
     }
-#if TEST_STD_VER > 11
+#if __cplusplus > 201103L
     {
         try
         {
             std::throw_with_nested(Final());
             assert(false);
         }
-        catch (const Final &)
+        catch (const Final &f)
         {
         }
     }

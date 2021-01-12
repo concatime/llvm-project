@@ -165,7 +165,7 @@ int main()
         assert(c.max_load_factor() == 1);
         assert(c0.size() == 0);
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
         typedef min_allocator<std::pair<const int, std::string> > A;
         typedef std::unordered_map<int, std::string,

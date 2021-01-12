@@ -106,7 +106,7 @@ int main()
         assert(i == m.begin());
         assert(i == m.end());
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
         typedef std::set<int, std::less<int>, min_allocator<int>> M;
         typedef int V;
@@ -186,7 +186,7 @@ int main()
         assert(i == m.end());
     }
 #endif
-#if TEST_STD_VER >= 14
+#if __cplusplus >= 201402L
     {
     //  This is LWG #2059
         typedef TemplateConstructor T;

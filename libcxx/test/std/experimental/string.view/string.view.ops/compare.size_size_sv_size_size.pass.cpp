@@ -7,6 +7,8 @@
 //
 //===----------------------------------------------------------------------===//
 
+
+// XFAIL: libcpp-no-exceptions
 // <string_view>
 
 // constexpr int compare(size_type pos1, size_type n1, basic_string_view str,
@@ -15,7 +17,6 @@
 #include <experimental/string_view>
 #include <cassert>
 
-#include "test_macros.h"
 #include "constexpr_char_traits.hpp"
 
 int sign ( int x ) { return x > 0 ? 1 : ( x < 0 ? -1 : 0 ); }
@@ -25,28 +26,22 @@ void test1 ( std::experimental::basic_string_view<CharT> sv1, size_t pos1, size_
              std::experimental::basic_string_view<CharT> sv2, size_t pos2, size_t n2,
              int expected ) {
 
-    if (pos1 > sv1.size() || pos2 > sv2.size()) {
-#ifndef TEST_HAS_NO_EXCEPTIONS
-        try {
-            sv1.compare(pos1, n1, sv2, pos2, n2);
-            assert(false);
-        } catch (const std::out_of_range&) {
-        } catch (...) {
-            assert(false);
-        }
-#endif
-    } else {
-        assert (sign( sv1.compare(pos1, n1, sv2, pos2, n2)) == sign(expected));
+    try
+    {
+        assert ( sign( sv1.compare(pos1, n1, sv2, pos2, n2)) == sign(expected));
+        assert(pos1 <= sv1.size());
+        assert(pos2 <= sv2.size());
     }
+    catch (const std::out_of_range&) { assert(pos1 > sv1.size() || pos2 > sv2.size()); }
 }
 
 
 template<typename CharT>
-void test ( const CharT *s1, size_t pos1, size_t n1,
-            const CharT *s2, size_t pos2, size_t n2,
+void test ( const CharT *s1, size_t pos1, size_t n1, 
+            const CharT *s2, size_t pos2, size_t n2, 
             int expected ) {
     typedef std::experimental::basic_string_view<CharT> string_view_t;
-
+    
     string_view_t sv1 ( s1 );
     string_view_t sv2 ( s2 );
     test1(sv1, pos1, n1, sv2, pos2, n2, expected);
@@ -5806,7 +5801,7 @@ int main () {
     test53();
     test54();
 
-
+    
     {
     test("abcde", 5, 1, "", 0, 0, 0);
     test("abcde", 2, 4, "", 0, 0, 3);
@@ -5821,7 +5816,7 @@ int main () {
     test(L"ABCde", 2, 4, L"abcde", 2, 4, -1);
     }
 
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
     test(u"abcde", 5, 1, u"", 0, 0, 0);
     test(u"abcde", 2, 4, u"", 0, 0, 3);
@@ -5837,7 +5832,7 @@ int main () {
     }
 #endif
 
-#if TEST_STD_VER > 11
+#if _LIBCPP_STD_VER > 11
     {
     typedef std::experimental::basic_string_view<char, constexpr_char_traits<char>> SV;
     constexpr SV  sv1 { "abcde", 5 };

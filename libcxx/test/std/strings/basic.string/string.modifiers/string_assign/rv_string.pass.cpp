@@ -16,7 +16,6 @@
 #include <utility>
 #include <cassert>
 
-#include "test_macros.h"
 #include "min_allocator.h"
 
 template <class S>
@@ -24,7 +23,7 @@ void
 test(S s, S str, S expected)
 {
     s.assign(std::move(str));
-    LIBCPP_ASSERT(s.__invariants());
+    assert(s.__invariants());
     assert(s == expected);
 }
 

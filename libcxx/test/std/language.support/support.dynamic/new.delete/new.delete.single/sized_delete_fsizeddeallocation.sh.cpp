@@ -14,9 +14,6 @@
 
 // UNSUPPORTED: sanitizer-new-delete
 
-// TODO Investigate why UBSAN prevents new from calling our replacement.
-// XFAIL: ubsan
-
 // NOTE: Only clang-3.7 and GCC 5.1 and greater support -fsized-deallocation.
 // REQUIRES: fsized-deallocation
 

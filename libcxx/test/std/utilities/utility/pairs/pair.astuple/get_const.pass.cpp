@@ -18,8 +18,6 @@
 #include <utility>
 #include <cassert>
 
-#include "test_macros.h"
-
 int main()
 {
     {
@@ -29,7 +27,7 @@ int main()
         assert(std::get<1>(p) == 4);
     }
 
-#if TEST_STD_VER > 11
+#if __cplusplus > 201103L
     {
         typedef std::pair<int, short> P;
         constexpr P p1(3, 4);

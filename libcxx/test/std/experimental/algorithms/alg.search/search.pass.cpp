@@ -15,7 +15,7 @@
 //   ForwardIterator search(ForwardIterator first, ForwardIterator last,
 //                          const Searcher& searcher);
 //
-//		returns searcher.operator(first, last).first
+//		returns searcher.operator(first, last)
 //
 
 #include <experimental/algorithm>
@@ -27,11 +27,10 @@ int searcher_called = 0;
 
 struct MySearcher {
     template <typename Iterator>
-    std::pair<Iterator, Iterator>
-    operator() (Iterator b, Iterator e) const
+    Iterator operator() ( Iterator b, Iterator /*e*/) const 
     {
         ++searcher_called;
-        return std::make_pair(b, e);
+        return b;
     }
 };
 

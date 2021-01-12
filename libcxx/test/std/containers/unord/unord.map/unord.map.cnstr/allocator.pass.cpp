@@ -45,7 +45,7 @@ int main()
         assert(c.load_factor() == 0);
         assert(c.max_load_factor() == 1);
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
         typedef std::unordered_map<NotConstructible, NotConstructible,
                                    test_hash<std::hash<NotConstructible> >,
@@ -65,32 +65,14 @@ int main()
         assert(c.load_factor() == 0);
         assert(c.max_load_factor() == 1);
     }
-    {
-        typedef explicit_allocator<std::pair<const NotConstructible, NotConstructible>> A;
-        typedef std::unordered_map<NotConstructible, NotConstructible,
-                                   test_hash<std::hash<NotConstructible> >,
-                                   test_compare<std::equal_to<NotConstructible> >,
-                                   A
-                                   > C;
-        C c(A{});
-        LIBCPP_ASSERT(c.bucket_count() == 0);
-        assert(c.hash_function() == test_hash<std::hash<NotConstructible> >());
-        assert(c.key_eq() == test_compare<std::equal_to<NotConstructible> >());
-        assert(c.get_allocator() == A{});
-        assert(c.size() == 0);
-        assert(c.empty());
-        assert(std::distance(c.begin(), c.end()) == 0);
-        assert(c.load_factor() == 0);
-        assert(c.max_load_factor() == 1);
-    }
-#if TEST_STD_VER > 11
+#if _LIBCPP_STD_VER > 11
     {
         typedef NotConstructible T;
         typedef test_allocator<std::pair<const T, T>> A;
         typedef test_hash<std::hash<T>> HF;
         typedef test_compare<std::equal_to<T>> Comp;
         typedef std::unordered_map<T, T, HF, Comp, A> C;
-
+        
         A a(10);
         C c(2, a);
         assert(c.bucket_count() == 2);

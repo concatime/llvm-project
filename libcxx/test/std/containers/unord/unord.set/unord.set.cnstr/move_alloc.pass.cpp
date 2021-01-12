@@ -110,7 +110,7 @@ int main()
 
         assert(c0.empty());
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
         typedef int P;
         typedef min_allocator<int> A;

@@ -124,7 +124,7 @@ int main()
         assert(r == next(m.begin(), 8));
     }
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
     typedef int V;
     typedef std::set<int, std::less<int>, min_allocator<int>> M;
@@ -281,7 +281,7 @@ int main()
     r = m.upper_bound(20);
     assert(r == next(m.begin(), 8));
     }
-
+    
     {
     typedef PrivateConstructor V;
     typedef std::set<V, std::less<>> M;

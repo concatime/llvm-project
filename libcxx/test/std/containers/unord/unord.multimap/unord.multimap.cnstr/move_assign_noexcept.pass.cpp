@@ -17,8 +17,6 @@
 
 // This tests a conforming extension
 
-// UNSUPPORTED: c++98, c++03
-
 #include <unordered_map>
 #include <cassert>
 
@@ -30,7 +28,6 @@ struct some_comp
 {
     typedef T value_type;
     some_comp& operator=(const some_comp&);
-    bool operator()(const T&, const T&) const { return false; }
 };
 
 template <class T>
@@ -44,6 +41,7 @@ struct some_hash
 
 int main()
 {
+#if __has_feature(cxx_noexcept)
     {
         typedef std::unordered_multimap<MoveOnly, MoveOnly> C;
         static_assert(std::is_nothrow_move_assignable<C>::value, "");
@@ -67,4 +65,5 @@ int main()
                                                          some_comp<MoveOnly>> C;
         static_assert(!std::is_nothrow_move_assignable<C>::value, "");
     }
+#endif
 }

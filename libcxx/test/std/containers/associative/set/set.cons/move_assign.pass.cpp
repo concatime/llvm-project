@@ -141,7 +141,7 @@ int main()
         assert(m3.key_comp() == C(5));
         assert(m1.empty());
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
         typedef MoveOnly V;
         typedef test_compare<std::less<MoveOnly> > C;

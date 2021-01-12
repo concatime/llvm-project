@@ -50,7 +50,7 @@ int main()
         assert(distance(l1.cbegin(), l1.cend()) == 0);
         assert(i == l1.begin());
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
         std::vector<bool, min_allocator<bool>> l1(a1, a1+3);
         std::vector<bool, min_allocator<bool>>::iterator i = l1.erase(l1.cbegin(), l1.cbegin());

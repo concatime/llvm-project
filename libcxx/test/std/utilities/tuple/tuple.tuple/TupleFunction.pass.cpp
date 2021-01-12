@@ -9,9 +9,7 @@
 
 // This is for bugs 18853 and 19118
 
-#include "test_macros.h"
-
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
 
 #include <tuple>
 #include <functional>

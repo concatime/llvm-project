@@ -49,7 +49,7 @@ int main()
     s.erase(50);
     test(s);
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
     typedef std::basic_string<char, std::char_traits<char>, min_allocator<char>> S;
     S s;

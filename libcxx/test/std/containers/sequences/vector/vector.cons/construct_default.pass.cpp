@@ -32,16 +32,16 @@ test0()
 	static_assert((noexcept(C()) == noexcept(typename C::allocator_type())), "" );
 #endif
     C c;
-    LIBCPP_ASSERT(c.__invariants());
+    assert(c.__invariants());
     assert(c.empty());
     assert(c.get_allocator() == typename C::allocator_type());
-    LIBCPP_ASSERT(is_contiguous_container_asan_correct(c));
+    assert(is_contiguous_container_asan_correct(c)); 
 #if TEST_STD_VER >= 11
     C c1 = {};
-    LIBCPP_ASSERT(c1.__invariants());
+    assert(c1.__invariants());
     assert(c1.empty());
     assert(c1.get_allocator() == typename C::allocator_type());
-    LIBCPP_ASSERT(is_contiguous_container_asan_correct(c1));
+    assert(is_contiguous_container_asan_correct(c1)); 
 #endif
 }
 
@@ -55,10 +55,10 @@ test1(const typename C::allocator_type& a)
 	static_assert((noexcept(C(typename C::allocator_type())) == std::is_nothrow_copy_constructible<typename C::allocator_type>::value), "" );
 #endif
     C c(a);
-    LIBCPP_ASSERT(c.__invariants());
+    assert(c.__invariants());
     assert(c.empty());
     assert(c.get_allocator() == a);
-    LIBCPP_ASSERT(is_contiguous_container_asan_correct(c));
+    assert(is_contiguous_container_asan_correct(c)); 
 }
 
 int main()
@@ -84,18 +84,6 @@ int main()
     }
     {
         std::vector<int, min_allocator<int> > v;
-        assert(v.empty());
-    }
-
-    {
-    test0<std::vector<int, explicit_allocator<int>> >();
-    test0<std::vector<NotConstructible, explicit_allocator<NotConstructible>> >();
-    test1<std::vector<int, explicit_allocator<int> > >(explicit_allocator<int>{});
-    test1<std::vector<NotConstructible, explicit_allocator<NotConstructible> > >
-        (explicit_allocator<NotConstructible>{});
-    }
-    {
-        std::vector<int, explicit_allocator<int> > v;
         assert(v.empty());
     }
 #endif

@@ -52,7 +52,7 @@ int main()
         assert(r->first == 5.5);
         assert(r->second == 4);
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
         typedef std::unordered_multimap<double, int, std::hash<double>, std::equal_to<double>,
                             min_allocator<std::pair<const double, int>>> C;

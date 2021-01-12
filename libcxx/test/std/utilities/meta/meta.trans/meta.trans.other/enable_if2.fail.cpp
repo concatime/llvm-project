@@ -7,7 +7,6 @@
 //
 //===----------------------------------------------------------------------===//
 
-// UNSUPPORTED: c++98, c++03, c++11
 // type_traits
 
 // enable_if
@@ -16,5 +15,9 @@
 
 int main()
 {
+#if _LIBCPP_STD_VER > 11
     typedef std::enable_if_t<false> A;
+#else
+    static_assert ( false, "" );
+#endif
 }

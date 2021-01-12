@@ -81,7 +81,7 @@ int main()
         assert(c.key_eq() == test_compare<std::equal_to<int> >());
         assert((c.get_allocator() == test_allocator<std::pair<const int, std::string> >()));
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
         typedef std::unordered_multimap<int, std::string,
                                    test_hash<std::hash<int> >,

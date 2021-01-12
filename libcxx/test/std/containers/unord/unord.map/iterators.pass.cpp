@@ -66,7 +66,7 @@ int main()
         assert(std::distance(c.cbegin(), c.cend()) == c.size());
         C::const_iterator i;
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
         typedef std::unordered_map<int, std::string, std::hash<int>, std::equal_to<int>,
                             min_allocator<std::pair<const int, std::string>>> C;
@@ -116,7 +116,7 @@ int main()
         C::const_iterator cii{};
         assert ( ii1 == ii2 );
         assert ( ii1 == ii4 );
-
+        
         assert (!(ii1 != ii2 ));
 
         assert ( (ii1 == cii ));

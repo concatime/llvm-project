@@ -14,8 +14,6 @@
 // iterator erase(const_iterator f, const_iterator l)
 
 #include <deque>
-#include <algorithm>
-#include <iterator>
 #include <cassert>
 
 #include "min_allocator.h"
@@ -86,7 +84,7 @@ int main()
         for (int j = 0; j < N; ++j)
             testN<std::deque<int> >(rng[i], rng[j]);
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
     int rng[] = {0, 1, 2, 3, 1023, 1024, 1025, 2047, 2048, 2049};
     const int N = sizeof(rng)/sizeof(rng[0]);

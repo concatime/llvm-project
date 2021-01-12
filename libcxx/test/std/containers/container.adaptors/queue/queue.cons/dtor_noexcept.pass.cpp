@@ -11,8 +11,6 @@
 
 // ~queue() // implied noexcept;
 
-// UNSUPPORTED: c++98, c++03
-
 #include <queue>
 #include <cassert>
 
@@ -20,8 +18,10 @@
 
 int main()
 {
+#if __has_feature(cxx_noexcept)
     {
         typedef std::queue<MoveOnly> C;
         static_assert(std::is_nothrow_destructible<C>::value, "");
     }
+#endif
 }

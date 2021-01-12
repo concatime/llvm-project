@@ -28,7 +28,7 @@ int main()
     assert(m.begin() == m.end());
     assert(m.key_comp() == C(3));
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
     typedef test_compare<std::less<int> > C;
     std::multimap<int, double, C, min_allocator<std::pair<const int, double>>> m(C(3));

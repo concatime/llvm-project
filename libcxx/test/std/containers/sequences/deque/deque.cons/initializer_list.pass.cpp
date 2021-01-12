@@ -27,7 +27,7 @@ int main()
     assert(d[2] == 5);
     assert(d[3] == 6);
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
     std::deque<int, min_allocator<int>> d = {3, 4, 5, 6};
     assert(d.size() == 4);

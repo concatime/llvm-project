@@ -39,7 +39,7 @@ int main()
         m.clear();
         assert(m.size() == 0);
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
         typedef std::set<int, std::less<int>, min_allocator<int>> M;
         typedef int V;

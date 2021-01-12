@@ -29,7 +29,7 @@ int main()
         v.push_back(0);
         assert(v.capacity() >= 101);
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
         std::vector<bool, min_allocator<bool>> v;
         assert(v.capacity() == 0);

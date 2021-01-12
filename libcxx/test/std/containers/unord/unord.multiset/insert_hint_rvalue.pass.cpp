@@ -73,7 +73,7 @@ int main()
         assert(*r == 5);
     }
 #endif  // _LIBCPP_HAS_NO_RVALUE_REFERENCES
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
         typedef std::unordered_multiset<double, std::hash<double>,
                                 std::equal_to<double>, min_allocator<double>> C;

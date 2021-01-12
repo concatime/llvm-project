@@ -74,13 +74,13 @@ test()
     }
 }
 
-#if TEST_STD_VER >= 14
+#if __cplusplus >= 201402L
 constexpr int il[] = { 2, 4, 6, 8, 7, 5, 3, 1 };
 #endif
 
 void constexpr_test()
 {
-#if TEST_STD_VER >= 14
+#if __cplusplus >= 201402L
     constexpr auto p = std::minmax_element(il, il+8);
     static_assert ( *(p.first)  == 1, "" );
     static_assert ( *(p.second) == 8, "" );
@@ -93,6 +93,6 @@ int main()
     test<bidirectional_iterator<const int*> >();
     test<random_access_iterator<const int*> >();
     test<const int*>();
-
+    
    constexpr_test();
 }

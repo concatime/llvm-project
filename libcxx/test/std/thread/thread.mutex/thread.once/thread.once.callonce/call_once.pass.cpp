@@ -21,8 +21,6 @@
 #include <thread>
 #include <cassert>
 
-#include "test_macros.h"
-
 typedef std::chrono::milliseconds ms;
 
 std::once_flag flg0;
@@ -173,7 +171,7 @@ public:
     void operator()(int&) {}
 };
 
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
 // reference qualifiers on functions are a C++11 extension
 struct RefQual
 {
@@ -242,7 +240,7 @@ int main()
         int i = 0;
         std::call_once(f, NonCopyable(), i);
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
 // reference qualifiers on functions are a C++11 extension
     {
         std::once_flag f1, f2;

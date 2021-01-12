@@ -40,7 +40,7 @@ int main()
     assert(*i++ == 1);
     assert(*i++ == 1);
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
     std::list<int, min_allocator<int>> d(10, 1);
     std::list<int, min_allocator<int>>::iterator i = d.insert(next(d.cbegin(), 2), {3, 4, 5, 6});

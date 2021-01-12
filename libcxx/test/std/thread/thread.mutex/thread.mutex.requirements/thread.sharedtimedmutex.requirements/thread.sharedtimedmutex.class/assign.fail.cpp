@@ -7,7 +7,6 @@
 //
 //===----------------------------------------------------------------------===//
 
-// UNSUPPORTED: c++98, c++03, c++11
 // <shared_mutex>
 
 // class shared_timed_mutex;
@@ -18,7 +17,11 @@
 
 int main()
 {
+#if _LIBCPP_STD_VER > 11
     std::shared_timed_mutex m0;
     std::shared_timed_mutex m1;
     m1 = m0;
+#else
+#   error
+#endif
 }

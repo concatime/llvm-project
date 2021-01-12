@@ -45,8 +45,6 @@ void test_is_not_reference()
 #endif
 }
 
-class incomplete_type;
-
 class Empty
 {
 };
@@ -89,7 +87,6 @@ int main()
     test_is_not_reference<void *>();
     test_is_not_reference<FunctionPtr>();
     test_is_not_reference<Union>();
-    test_is_not_reference<incomplete_type>();
     test_is_not_reference<Empty>();
     test_is_not_reference<bit_zero>();
     test_is_not_reference<int*>();

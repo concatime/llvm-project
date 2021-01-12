@@ -17,7 +17,6 @@
 // template<class _URNG> result_type operator()(_URNG& g, const param_type& parm);
 
 #include <random>
-#include <algorithm>
 #include <vector>
 #include <iterator>
 #include <numeric>
@@ -73,10 +72,10 @@ int main()
                 double kurtosis = 0;
                 for (I j = lb; j != ub; ++j)
                 {
-                    double dbl = (*j - mean);
-                    double d2 = sqr(dbl);
+                    double d = (*j - mean);
+                    double d2 = sqr(d);
                     var += d2;
-                    skew += dbl * d2;
+                    skew += d * d2;
                     kurtosis += d2 * d2;
                 }
                 var /= Ni;

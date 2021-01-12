@@ -7,7 +7,6 @@
 //
 //===----------------------------------------------------------------------===//
 
-// UNSUPPORTED: c++98, c++03, c++11
 // <optional>
 
 // ~optional();
@@ -15,6 +14,8 @@
 #include <experimental/optional>
 #include <type_traits>
 #include <cassert>
+
+#if _LIBCPP_STD_VER > 11
 
 using std::experimental::optional;
 
@@ -28,8 +29,11 @@ public:
 
 bool X::dtor_called = false;
 
+#endif  // _LIBCPP_STD_VER > 11
+
 int main()
 {
+#if _LIBCPP_STD_VER > 11
     {
         typedef int T;
         static_assert(std::is_trivially_destructible<T>::value, "");
@@ -51,4 +55,5 @@ int main()
         }
         assert(X::dtor_called == true);
     }
+#endif  // _LIBCPP_STD_VER > 11
 }

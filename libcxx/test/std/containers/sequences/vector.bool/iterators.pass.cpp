@@ -58,7 +58,7 @@ int main()
         C::iterator i;
         C::const_iterator j;
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
         typedef bool T;
         typedef std::vector<T, min_allocator<T>> C;

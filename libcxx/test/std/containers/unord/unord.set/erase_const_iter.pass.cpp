@@ -51,7 +51,7 @@ int main()
         assert(c.count(3) == 1);
         assert(c.count(4) == 1);
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
         typedef std::unordered_set<int, std::hash<int>, std::equal_to<int>, min_allocator<int>> C;
         typedef int P;
@@ -73,7 +73,7 @@ int main()
         assert(c.count(4) == 1);
     }
 #endif
-#if TEST_STD_VER >= 14
+#if __cplusplus >= 201402L
     {
     //  This is LWG #2059
         typedef TemplateConstructor T;

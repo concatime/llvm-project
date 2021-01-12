@@ -75,7 +75,7 @@ int main()
         assert(r.second);
     }
 #endif  // _LIBCPP_HAS_NO_RVALUE_REFERENCES
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
         typedef std::unordered_set<double, std::hash<double>,
                                 std::equal_to<double>, min_allocator<double>> C;

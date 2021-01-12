@@ -7,7 +7,6 @@
 //
 //===----------------------------------------------------------------------===//
 
-// UNSUPPORTED: c++98, c++03, c++11
 // <optional>
 
 // template <class U> T optional<T>::value_or(U&& v) &&;
@@ -15,6 +14,8 @@
 #include <experimental/optional>
 #include <type_traits>
 #include <cassert>
+
+#if _LIBCPP_STD_VER > 11
 
 using std::experimental::optional;
 using std::experimental::in_place_t;
@@ -39,8 +40,11 @@ struct X
         {return x.i_ == y.i_;}
 };
 
+#endif  // _LIBCPP_STD_VER > 11
+
 int main()
 {
+#if _LIBCPP_STD_VER > 11
     {
         optional<X> opt(in_place, 2);
         Y y(3);
@@ -63,4 +67,5 @@ int main()
         assert(std::move(opt).value_or(Y(3)) == 4);
         assert(!opt);
     }
+#endif  // _LIBCPP_STD_VER > 11
 }

@@ -18,7 +18,6 @@
 #include <stdexcept>
 #include <cassert>
 
-#include "test_macros.h"
 #include "min_allocator.h"
 
 template <class S>
@@ -28,7 +27,7 @@ test(S s, S str, typename S::size_type pos, typename S::size_type n, S expected)
     try
     {
         s.assign(str, pos, n);
-        LIBCPP_ASSERT(s.__invariants());
+        assert(s.__invariants());
         assert(pos <= str.size());
         assert(s == expected);
     }
@@ -45,7 +44,7 @@ test_npos(S s, S str, typename S::size_type pos, S expected)
     try
     {
         s.assign(str, pos);
-        LIBCPP_ASSERT(s.__invariants());
+        assert(s.__invariants());
         assert(pos <= str.size());
         assert(s == expected);
     }

@@ -11,13 +11,11 @@
 
 #include <stdarg.h>
 
-#include "test_macros.h"
-
 #ifndef va_arg
 #error va_arg not defined
 #endif
 
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
 #  ifndef va_copy
 #    error va_copy is not defined when c++ >= 11
 #  endif

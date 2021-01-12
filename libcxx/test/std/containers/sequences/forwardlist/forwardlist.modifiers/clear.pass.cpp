@@ -38,7 +38,7 @@ int main()
         c.clear();
         assert(distance(c.begin(), c.end()) == 0);
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
         typedef NotConstructible T;
         typedef std::forward_list<T, min_allocator<T>> C;

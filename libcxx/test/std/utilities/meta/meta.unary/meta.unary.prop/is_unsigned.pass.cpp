@@ -50,8 +50,6 @@ public:
     ~Class();
 };
 
-struct A; // incomplete
-
 int main()
 {
     test_is_not_unsigned<void>();
@@ -63,7 +61,6 @@ int main()
     test_is_not_unsigned<char[]>();
     test_is_not_unsigned<int>();
     test_is_not_unsigned<double>();
-    test_is_not_unsigned<A>();
 
     test_is_unsigned<bool>();
     test_is_unsigned<unsigned>();

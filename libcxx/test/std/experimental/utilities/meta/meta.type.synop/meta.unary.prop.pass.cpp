@@ -7,10 +7,11 @@
 //
 //===----------------------------------------------------------------------===//
 
-// UNSUPPORTED: c++98, c++03, c++11
 // <experimental/type_traits>
 
 #include <experimental/type_traits>
+
+#if _LIBCPP_STD_VER > 11
 
 namespace ex = std::experimental;
 
@@ -483,4 +484,6 @@ int main()
         static_assert(ex::has_virtual_destructor_v<T> == std::has_virtual_destructor<T>::value, "");
     }
 }
-
+#else /* _LIBCPP_STD_VER <= 11 */
+int main() {}
+#endif /* _LIBCPP_STD_VER > 11 */

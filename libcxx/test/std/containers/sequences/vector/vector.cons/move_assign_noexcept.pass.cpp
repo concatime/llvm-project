@@ -16,8 +16,6 @@
 
 // This tests a conforming extension
 
-// UNSUPPORTED: c++98, c++03
-
 #include <vector>
 #include <cassert>
 
@@ -35,7 +33,7 @@ template <class T>
 struct some_alloc2
 {
     typedef T value_type;
-
+    
     some_alloc2() {}
     some_alloc2(const some_alloc2&);
     void deallocate(void*, unsigned) {}
@@ -48,7 +46,7 @@ template <class T>
 struct some_alloc3
 {
     typedef T value_type;
-
+    
     some_alloc3() {}
     some_alloc3(const some_alloc3&);
     void deallocate(void*, unsigned) {}
@@ -60,6 +58,7 @@ struct some_alloc3
 
 int main()
 {
+#if __has_feature(cxx_noexcept)
     {
         typedef std::vector<MoveOnly> C;
         static_assert(std::is_nothrow_move_assignable<C>::value, "");
@@ -91,5 +90,7 @@ int main()
         typedef std::vector<MoveOnly, some_alloc3<MoveOnly>> C;
         static_assert(!std::is_nothrow_move_assignable<C>::value, "");
     }
+#endif
+
 #endif
 }

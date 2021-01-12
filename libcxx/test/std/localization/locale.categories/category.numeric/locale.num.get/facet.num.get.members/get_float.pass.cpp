@@ -32,7 +32,6 @@ public:
         : F(refs) {}
 };
 
-
 int main()
 {
     const my_facet f(1);
@@ -168,30 +167,5 @@ int main()
         assert(iter.base() == str+sizeof(str)-1);
         assert(err == ios.goodbit);
         assert(std::isnan(v));
-    }
-    {
-        v = -1;
-        const char str[] = "3.40283e+39"; // unrepresentable
-        std::ios_base::iostate err = ios.goodbit;
-        input_iterator<const char*> iter =
-            f.get(input_iterator<const char*>(str),
-                  input_iterator<const char*>(str+sizeof(str)),
-                  ios, err, v);
-        assert(iter.base() == str+sizeof(str)-1);
-        assert(err == ios.failbit);
-        assert(v == HUGE_VALF);
-    }
-    {
-        v = -1;
-        const char str[] = "-3.40283e+38"; // unrepresentable
-        std::ios_base::iostate err = ios.goodbit;
-        input_iterator<const char*> iter =
-            f.get(input_iterator<const char*>(str),
-                  input_iterator<const char*>(str+sizeof(str)),
-                  ios, err, v);
-        assert(iter.base() == str+sizeof(str)-1);
-        assert(err == ios.failbit);
-        assert(v == -HUGE_VALF);
-
     }
 }

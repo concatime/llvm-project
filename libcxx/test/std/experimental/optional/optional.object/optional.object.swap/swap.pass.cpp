@@ -7,7 +7,6 @@
 //
 //===----------------------------------------------------------------------===//
 
-// UNSUPPORTED: c++98, c++03, c++11
 // XFAIL: libcpp-no-exceptions
 // <optional>
 
@@ -18,6 +17,8 @@
 #include <experimental/optional>
 #include <type_traits>
 #include <cassert>
+
+#if _LIBCPP_STD_VER > 11
 
 using std::experimental::optional;
 
@@ -62,8 +63,12 @@ public:
     friend void swap(Z& x, Z& y) {throw 6;}
 };
 
+
+#endif  // _LIBCPP_STD_VER > 11
+
 int main()
 {
+#if _LIBCPP_STD_VER > 11
     {
         optional<int> opt1;
         optional<int> opt2;
@@ -298,4 +303,5 @@ int main()
         assert(static_cast<bool>(opt2) == true);
         assert(*opt2 == 2);
     }
+#endif  // _LIBCPP_STD_VER > 11
 }

@@ -7,7 +7,6 @@
 //
 //===----------------------------------------------------------------------===//
 
-// UNSUPPORTED: c++98, c++03, c++11
 // XFAIL: libcpp-no-exceptions
 // <optional>
 
@@ -17,6 +16,8 @@
 #include <type_traits>
 #include <cassert>
 #include <memory>
+
+#if _LIBCPP_STD_VER > 11
 
 using std::experimental::optional;
 
@@ -54,8 +55,11 @@ public:
 
 bool Z::dtor_called = false;
 
+#endif  // _LIBCPP_STD_VER > 11
+
 int main()
 {
+#if _LIBCPP_STD_VER > 11
     {
         optional<int> opt;
         opt.emplace();
@@ -141,4 +145,5 @@ int main()
             assert(Z::dtor_called == true);
         }
     }
+#endif  // _LIBCPP_STD_VER > 11
 }

@@ -40,12 +40,12 @@ int main () {
     test ( "QBCDE" );
     test ( "A" );
     test ( "" );
-
+    
     test ( L"QBCDE" );
     test ( L"A" );
     test ( L"" );
 
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     test ( u"QBCDE" );
     test ( u"A" );
     test ( u"" );

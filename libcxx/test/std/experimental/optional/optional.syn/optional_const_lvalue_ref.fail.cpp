@@ -7,7 +7,6 @@
 //
 //===----------------------------------------------------------------------===//
 
-// UNSUPPORTED: c++98, c++03, c++11
 // <optional>
 
 // A program that necessitates the instantiation of template optional for a
@@ -17,7 +16,11 @@
 
 int main()
 {
+#if _LIBCPP_STD_VER > 11
     using std::experimental::optional;
 
     optional<const int&> opt;
+#else
+#error
+#endif  // _LIBCPP_STD_VER > 11
 }

@@ -44,7 +44,7 @@ int main()
         assert(*r.first == Emplaceable(5, 6));
         assert(!r.second);
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
         typedef std::unordered_set<Emplaceable, std::hash<Emplaceable>,
                       std::equal_to<Emplaceable>, min_allocator<Emplaceable>> C;

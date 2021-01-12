@@ -17,8 +17,6 @@
 #include <random>
 #include <cassert>
 
-#include "test_macros.h"
-
 int main()
 {
     {
@@ -30,9 +28,9 @@ int main()
     {
         std::random_device r("/dev/null");
         r();
-        LIBCPP_ASSERT(false);
+        assert(false);
     }
-    catch (const std::system_error&)
+    catch (const std::system_error& e)
     {
     }
 }

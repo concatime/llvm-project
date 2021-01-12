@@ -7,7 +7,6 @@
 //
 //===----------------------------------------------------------------------===//
 
-// UNSUPPORTED: c++98, c++03, c++11
 // <optional>
 
 // template <class T> constexpr bool operator!=(const optional<T>& x, const optional<T>& y);
@@ -15,6 +14,8 @@
 #include <experimental/optional>
 #include <type_traits>
 #include <cassert>
+
+#if _LIBCPP_STD_VER > 11
 
 using std::experimental::optional;
 
@@ -27,13 +28,16 @@ struct X
 
 constexpr bool operator == ( const X &lhs, const X &rhs )
     { return lhs.i_ == rhs.i_ ; }
+    
+#endif
 
 int main()
 {
+#if _LIBCPP_STD_VER > 11
     {
     typedef X T;
     typedef optional<T> O;
-
+    
     constexpr O o1;     // disengaged
     constexpr O o2;     // disengaged
     constexpr O o3{1};  // engaged
@@ -71,4 +75,5 @@ int main()
     static_assert ( !(o5 != o5), "" );
 
     }
+#endif
 }

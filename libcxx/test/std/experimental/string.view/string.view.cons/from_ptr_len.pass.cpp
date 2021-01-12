@@ -18,8 +18,6 @@
 #include <string>
 #include <cassert>
 
-#include "test_macros.h"
-
 template<typename CharT>
 void test ( const CharT *s, size_t sz ) {
     {
@@ -55,7 +53,7 @@ int main () {
     }
 #endif
 
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     test ( u"QBCDE", 5 );
     test ( u"QBCDE", 2 );
     test ( u"", 0 );

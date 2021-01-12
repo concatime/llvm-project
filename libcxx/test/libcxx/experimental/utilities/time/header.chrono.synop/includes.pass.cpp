@@ -7,13 +7,14 @@
 //
 //===----------------------------------------------------------------------===//
 
-// UNSUPPORTED: c++98, c++03, c++11
 // <experimental/chrono>
 
 #include <experimental/chrono>
 
-#ifndef _LIBCPP_CHRONO
-#  error "<experimental/chrono> must include <chrono>"
+#if _LIBCPP_STD_VER > 11
+# ifndef _LIBCPP_CHRONO
+#   error "<experimental/chrono> must include <chrono>"
+# endif
 #endif
 
 int main()

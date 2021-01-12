@@ -44,7 +44,7 @@ int main()
     assert(*next(m.begin()) == 2);
     assert(*next(m.begin(), 2) == 3);
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
     typedef int V;
     V ar[] =

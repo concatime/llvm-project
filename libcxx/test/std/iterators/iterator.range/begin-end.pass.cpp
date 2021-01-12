@@ -15,9 +15,7 @@
 // template <class E> reverse_iterator<const E*> rbegin(initializer_list<E> il);
 // template <class E> reverse_iterator<const E*> rend(initializer_list<E> il);
 
-#include "test_macros.h"
-
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
 #include <iterator>
 #include <cassert>
 #include <vector>
@@ -83,7 +81,7 @@ void test_container( C & c, typename C::value_type val ) {
     assert ( std::crend(c)   == c.crend());
 #endif
     }
-
+    
 template<typename T>
 void test_container( std::initializer_list<T> & c, T val ) {
     assert ( std::begin(c)   == c.begin());
@@ -123,7 +121,7 @@ int main(){
     std::list<int> l;   l.push_back(2);
     std::array<int, 1> a; a[0] = 3;
     std::initializer_list<int> il = { 4 };
-
+    
     test_container ( v, 1 );
     test_container ( l, 2 );
     test_container ( a, 3 );
@@ -133,7 +131,7 @@ int main(){
     test_const_container ( l, 2 );
     test_const_container ( a, 3 );
     test_const_container ( il, 4 );
-
+    
     static constexpr int arrA [] { 1, 2, 3 };
     test_const_array ( arrA );
 #if _LIBCPP_STD_VER > 11

@@ -76,9 +76,9 @@ int main()
                     std::rethrow_if_nested(a);
                     assert(false);
                 }
-                catch (const B& b2)
+                catch (const B& b)
                 {
-                    assert(b2 == B(5));
+                    assert(b == B(5));
                 }
             }
         }

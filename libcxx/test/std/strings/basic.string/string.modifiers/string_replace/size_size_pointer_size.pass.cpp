@@ -13,12 +13,13 @@
 // basic_string<charT,traits,Allocator>&
 //   replace(size_type pos, size_type n1, const charT* s, size_type n2);
 
+#include <stdio.h>
+
 #include <string>
 #include <stdexcept>
 #include <algorithm>
 #include <cassert>
 
-#include "test_macros.h"
 #include "min_allocator.h"
 
 template <class S>
@@ -32,7 +33,7 @@ test(S s, typename S::size_type pos, typename S::size_type n1,
     try
     {
         s.replace(pos, n1, str, n2);
-        LIBCPP_ASSERT(s.__invariants());
+        assert(s.__invariants());
         assert(pos <= old_size);
         assert(s == expected);
         typename S::size_type xlen = std::min(n1, old_size - pos);

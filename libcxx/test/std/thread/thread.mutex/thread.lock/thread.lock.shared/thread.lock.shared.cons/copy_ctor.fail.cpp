@@ -7,7 +7,6 @@
 //
 //===----------------------------------------------------------------------===//
 
-// UNSUPPORTED: c++98, c++03, c++11
 // <shared_mutex>
 
 // template <class Mutex> class shared_lock;
@@ -16,10 +15,16 @@
 
 #include <shared_mutex>
 
+#if _LIBCPP_STD_VER > 11
 std::shared_timed_mutex m;
+#endif  // _LIBCPP_STD_VER > 11
 
 int main()
 {
+#if _LIBCPP_STD_VER > 11
     std::shared_lock<std::shared_timed_mutex> lk0(m);
     std::shared_lock<std::shared_timed_mutex> lk = lk0;
+#else
+#   error
+#endif  // _LIBCPP_STD_VER > 11
 }

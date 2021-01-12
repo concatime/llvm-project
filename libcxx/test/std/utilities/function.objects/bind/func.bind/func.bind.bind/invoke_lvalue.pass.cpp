@@ -286,5 +286,4 @@ int main()
     test_void_1();
     test_int_1();
     test_void_2();
-    test3();
 }

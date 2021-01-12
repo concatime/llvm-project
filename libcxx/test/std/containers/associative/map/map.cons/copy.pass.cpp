@@ -92,7 +92,7 @@ int main()
         assert(*next(mo.begin(), 2) == V(3, 1));
     }
 #endif  // _LIBCPP_HAS_NO_ADVANCED_SFINAE
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
         typedef std::pair<const int, double> V;
         V ar[] =

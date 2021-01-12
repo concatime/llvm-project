@@ -57,9 +57,4 @@ int main()
     assert(s.get_deleter().state() == 6);
     }
     assert(A::count == 0);
-    {
-    Deleter d;
-    std::unique_ptr<A[], Deleter&> s(nullptr, d);
-    assert(s.get() == nullptr);
-    }
 }

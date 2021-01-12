@@ -36,7 +36,7 @@ int main()
         assert(n == std::end(t) - std::begin(t));
         assert(c.get_allocator() == A(13));
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
         typedef int T;
         typedef min_allocator<T> A;

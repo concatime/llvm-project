@@ -7,7 +7,6 @@
 //
 //===----------------------------------------------------------------------===//
 
-// UNSUPPORTED: c++98, c++03, c++11
 // <optional>
 
 // template <class T> struct hash<optional<T>>;
@@ -20,6 +19,7 @@
 
 int main()
 {
+#if _LIBCPP_STD_VER > 11
     using std::experimental::optional;
 
     {
@@ -43,4 +43,5 @@ int main()
         opt = std::unique_ptr<int>(new int(3));
         assert(std::hash<optional<T>>{}(opt) == std::hash<T>{}(*opt));
     }
+#endif  // _LIBCPP_STD_VER > 11
 }

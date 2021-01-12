@@ -7,7 +7,6 @@
 //
 //===----------------------------------------------------------------------===//
 
-// UNSUPPORTED: c++98, c++03, c++11
 // XFAIL: libcpp-no-exceptions
 // <optional>
 
@@ -18,6 +17,8 @@
 #include <type_traits>
 #include <cassert>
 #include <vector>
+
+#if _LIBCPP_STD_VER > 11
 
 using std::experimental::optional;
 
@@ -59,7 +60,7 @@ public:
     static bool dtor_called;
     constexpr Z() : i_(0) {}
     constexpr Z(int i) : i_(i) {}
-    Z(std::initializer_list<int> il) : i_(il.begin()[0]), j_(il.begin()[1])
+    constexpr Z(std::initializer_list<int> il) : i_(il.begin()[0]), j_(il.begin()[1])
         {throw 6;}
     ~Z() {dtor_called = true;}
 
@@ -69,8 +70,11 @@ public:
 
 bool Z::dtor_called = false;
 
+#endif  // _LIBCPP_STD_VER > 11
+
 int main()
 {
+#if _LIBCPP_STD_VER > 11
     {
         X x;
         {
@@ -109,4 +113,5 @@ int main()
             assert(Z::dtor_called == true);
         }
     }
+#endif  // _LIBCPP_STD_VER > 11
 }

@@ -7,7 +7,6 @@
 //
 //===----------------------------------------------------------------------===//
 
-// UNSUPPORTED: c++98, c++03, c++11
 // <chrono>
 
 #include <chrono>
@@ -16,13 +15,14 @@
 
 int main()
 {
+#if _LIBCPP_STD_VER > 11 
     using namespace std::literals;
 
     std::chrono::hours h = 4h;
     assert ( h == std::chrono::hours(4));
     auto h2 = 4.0h;
     assert ( h == h2 );
-
+    
     std::chrono::minutes min = 36min;
     assert ( min == std::chrono::minutes(36));
     auto min2 = 36.0min;
@@ -47,4 +47,5 @@ int main()
     assert ( ns == std::chrono::nanoseconds(645));
     auto ns2 = 645.ns;
     assert ( ns == ns2 );
+#endif
 }

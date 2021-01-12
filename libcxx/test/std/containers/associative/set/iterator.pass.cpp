@@ -111,7 +111,7 @@ int main()
         for (int j = 1; j <= m.size(); ++j, ++i)
             assert(*i == j);
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
         typedef int V;
         V ar[] =

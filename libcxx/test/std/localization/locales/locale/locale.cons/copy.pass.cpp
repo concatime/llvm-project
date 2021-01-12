@@ -8,6 +8,7 @@
 //===----------------------------------------------------------------------===//
 
 // REQUIRES: locale.fr_FR.UTF-8
+// UNSUPPORTED: sanitizer-new-delete
 
 // <locale>
 
@@ -17,8 +18,21 @@
 #include <cassert>
 #include <new>
 
-#include "count_new.hpp"
 #include "platform_support.h" // locale name macros
+
+int new_called = 0;
+
+void* operator new(std::size_t s) throw(std::bad_alloc)
+{
+    ++new_called;
+    return std::malloc(s);
+}
+
+void  operator delete(void* p) throw()
+{
+    --new_called;
+    std::free(p);
+}
 
 void check(const std::locale& loc)
 {
@@ -64,5 +78,5 @@ int main()
         check(loc);
         check(loc2);
     }
-    assert(globalMemCounter.checkOutstandingNewEq(0));
+    assert(new_called == 0);
 }

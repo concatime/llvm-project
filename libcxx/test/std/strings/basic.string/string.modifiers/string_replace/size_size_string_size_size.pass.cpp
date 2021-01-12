@@ -20,7 +20,6 @@
 #include <algorithm>
 #include <cassert>
 
-#include "test_macros.h"
 #include "min_allocator.h"
 
 template <class S>
@@ -34,7 +33,7 @@ test(S s, typename S::size_type pos1, typename S::size_type n1,
     try
     {
         s.replace(pos1, n1, str, pos2, n2);
-        LIBCPP_ASSERT(s.__invariants());
+        assert(s.__invariants());
         assert(pos1 <= old_size && pos2 <= str.size());
         assert(s == expected);
         typename S::size_type xlen = std::min(n1, old_size - pos1);
@@ -59,7 +58,7 @@ test_npos(S s, typename S::size_type pos1, typename S::size_type n1,
     try
     {
         s.replace(pos1, n1, str, pos2);
-        LIBCPP_ASSERT(s.__invariants());
+        assert(s.__invariants());
         assert(pos1 <= old_size && pos2 <= str.size());
         assert(s == expected);
         typename S::size_type xlen = std::min(n1, old_size - pos1);

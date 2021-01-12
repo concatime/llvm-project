@@ -24,7 +24,7 @@ test()
 {
     std::deque<T, Allocator> d;
     assert(d.size() == 0);
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     std::deque<T, Allocator> d1 = {};
     assert(d1.size() == 0);
 #endif
@@ -34,7 +34,7 @@ int main()
 {
     test<int, std::allocator<int> >();
     test<NotConstructible, stack_allocator<NotConstructible, 1> >();
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     test<int, min_allocator<int> >();
     test<NotConstructible, min_allocator<NotConstructible> >();
 #endif

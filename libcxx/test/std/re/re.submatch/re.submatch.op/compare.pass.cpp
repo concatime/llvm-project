@@ -215,7 +215,6 @@
 
 #include <regex>
 #include <cassert>
-#include "test_macros.h"
 
 template <class CharT>
 void
@@ -283,6 +282,6 @@ int main()
     test(std::string("1234"), std::string("123"));
     test(std::wstring(L"123"), std::wstring(L"123"));
     test(std::wstring(L"1234"), std::wstring(L"123"));
-    test(std::string("123\000" "56", 6), std::string("123\000" "56", 6), false);
-    test(std::wstring(L"123\000" L"56", 6), std::wstring(L"123\000" L"56", 6), false);
+    test(std::string("123\00056", 6), std::string("123\00056", 6), false);
+    test(std::wstring(L"123\00056", 6), std::wstring(L"123\00056", 6), false);
 }

@@ -29,8 +29,6 @@ void test_is_volatile()
 #endif
 }
 
-struct A; // incomplete
-
 int main()
 {
     test_is_volatile<void>();
@@ -40,8 +38,6 @@ int main()
     test_is_volatile<const int*>();
     test_is_volatile<char[3]>();
     test_is_volatile<char[]>();
-
-    test_is_volatile<A>();
 
     static_assert(!std::is_volatile<int&>::value, "");
     static_assert(!std::is_volatile<volatile int&>::value, "");

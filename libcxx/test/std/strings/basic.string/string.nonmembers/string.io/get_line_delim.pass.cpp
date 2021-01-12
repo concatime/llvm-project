@@ -54,7 +54,7 @@ int main()
         assert(in.eof());
         assert(s == L"   ghij");
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
         typedef std::basic_string<char, std::char_traits<char>, min_allocator<char>> S;
         std::istringstream in(" abc*  def**   ghij");

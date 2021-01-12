@@ -7,8 +7,6 @@
 //
 //===----------------------------------------------------------------------===//
 
-// UNSUPPORTED: c++98, c++03, c++11
-
 // <string>
 
 // iterator       begin();
@@ -23,6 +21,7 @@
 
 int main()
 {
+#if _LIBCPP_STD_VER > 11
     { // N3644 testing
         typedef std::string C;
         C::iterator ii1{}, ii2{};
@@ -41,7 +40,7 @@ int main()
         C::iterator ii4 = ii1;
         C::const_iterator cii{};
         assert ( ii1 == ii2 );
-        assert ( ii1 == ii4 );
+        assert ( ii1 == ii4 );        
         assert ( ii1 == cii );
         assert ( !(ii1 != ii2 ));
         assert ( !(ii1 != cii ));
@@ -70,4 +69,5 @@ int main()
         assert ( !(ii1 != ii2 ));
         assert ( !(ii1 != cii ));
     }
+#endif
 }

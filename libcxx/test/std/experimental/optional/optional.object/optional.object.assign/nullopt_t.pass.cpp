@@ -7,7 +7,6 @@
 //
 //===----------------------------------------------------------------------===//
 
-// UNSUPPORTED: c++98, c++03, c++11
 // <optional>
 
 // optional<T>& operator=(nullopt_t) noexcept;
@@ -15,6 +14,8 @@
 #include <experimental/optional>
 #include <type_traits>
 #include <cassert>
+
+#if _LIBCPP_STD_VER > 11
 
 using std::experimental::optional;
 using std::experimental::nullopt_t;
@@ -28,8 +29,11 @@ struct X
 
 bool X::dtor_called = false;
 
+#endif  // _LIBCPP_STD_VER > 11
+
 int main()
 {
+#if _LIBCPP_STD_VER > 11
     {
         optional<int> opt;
         static_assert(noexcept(opt = nullopt) == true, "");
@@ -59,4 +63,5 @@ int main()
             assert(static_cast<bool>(opt) == false);
         }
     }
+#endif  // _LIBCPP_STD_VER > 11
 }

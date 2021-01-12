@@ -68,7 +68,7 @@ int main()
         assert(m.size() == 1);
         assert(*r == 2);
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
         typedef std::set<int, std::less<int>, min_allocator<int>> M;
         typedef M::iterator R;

@@ -64,12 +64,6 @@ test()
     static_assert((std::is_same<
         typename C::const_reverse_iterator,
         std::reverse_iterator<typename C::const_iterator> >::value), "");
-    static_assert((std::is_signed<typename C::difference_type>::value), "");
-    static_assert((std::is_unsigned<typename C::size_type>::value), "");
-    static_assert((std::is_same<typename C::difference_type,
-        typename std::iterator_traits<typename C::iterator>::difference_type>::value), "");
-    static_assert((std::is_same<typename C::difference_type,
-        typename std::iterator_traits<typename C::const_iterator>::difference_type>::value), "");
 }
 
 int main()
@@ -79,8 +73,7 @@ int main()
     test<Copyable, test_allocator<Copyable> >();
     static_assert((std::is_same<std::deque<char>::allocator_type,
                                 std::allocator<char> >::value), "");
-
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
         typedef std::deque<short, min_allocator<short>> C;
         static_assert((std::is_same<C::value_type, short>::value), "");
@@ -92,13 +85,6 @@ int main()
 //  min_allocator doesn't have a size_type, so one gets synthesized
         static_assert((std::is_same<C::size_type, std::make_unsigned<C::difference_type>::type>::value), "");
         static_assert((std::is_same<C::difference_type, std::ptrdiff_t>::value), "");
-
-        static_assert((std::is_signed<typename C::difference_type>::value), "");
-        static_assert((std::is_unsigned<typename C::size_type>::value), "");
-        static_assert((std::is_same<typename C::difference_type,
-            typename std::iterator_traits<typename C::iterator>::difference_type>::value), "");
-        static_assert((std::is_same<typename C::difference_type,
-            typename std::iterator_traits<typename C::const_iterator>::difference_type>::value), "");
     }
 #endif
 }

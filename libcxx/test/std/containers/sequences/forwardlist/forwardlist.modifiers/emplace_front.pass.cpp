@@ -32,7 +32,7 @@ int main()
         assert(*next(c.begin()) == Emplaceable());
         assert(distance(c.begin(), c.end()) == 2);
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
         typedef Emplaceable T;
         typedef std::forward_list<T, min_allocator<T>> C;

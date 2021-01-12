@@ -65,7 +65,7 @@ int main()
     test(S("gfsmthlkon"), 'i', 9);
     test(S("laenfsbridchgotmkqpj"), 'i', 19);
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
     typedef std::basic_string<char, std::char_traits<char>, min_allocator<char>> S;
     test(S(""), 'i', 0, S::npos);

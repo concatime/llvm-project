@@ -14,12 +14,9 @@
 
 // This tests a conforming extension
 
-// UNSUPPORTED: c++98, c++03
-
 #include <vector>
 #include <cassert>
 
-#include "test_macros.h"
 #include "test_allocator.h"
 
 template <class T>
@@ -31,13 +28,14 @@ struct some_alloc
 
 int main()
 {
+#if __has_feature(cxx_noexcept)
     {
         typedef std::vector<bool> C;
-        LIBCPP_STATIC_ASSERT(std::is_nothrow_default_constructible<C>::value, "");
+        static_assert(std::is_nothrow_default_constructible<C>::value, "");
     }
     {
         typedef std::vector<bool, test_allocator<bool>> C;
-        LIBCPP_STATIC_ASSERT(std::is_nothrow_default_constructible<C>::value, "");
+        static_assert(std::is_nothrow_default_constructible<C>::value, "");
     }
     {
         typedef std::vector<bool, other_allocator<bool>> C;
@@ -47,4 +45,5 @@ int main()
         typedef std::vector<bool, some_alloc<bool>> C;
         static_assert(!std::is_nothrow_default_constructible<C>::value, "");
     }
+#endif
 }

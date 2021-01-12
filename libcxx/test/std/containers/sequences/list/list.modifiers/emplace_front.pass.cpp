@@ -47,7 +47,7 @@ int main()
     assert(c.back().geti() == 2);
     assert(c.back().getd() == 3.5);
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
     std::list<A, min_allocator<A>> c;
     c.emplace_front(2, 3.5);

@@ -10,9 +10,7 @@
 #include <memory>
 #include <cassert>
 
-#include "test_macros.h"
-
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
 // #include <memory>
 //
 // template <class Alloc>
@@ -21,7 +19,7 @@
 //     typedef Alloc                        allocator_type;
 //     typedef typename allocator_type::value_type
 //                                          value_type;
-//
+// 
 //     typedef Alloc::pointer | value_type* pointer;
 //     typedef Alloc::const_pointer
 //           | pointer_traits<pointer>::rebind<const value_type>
@@ -38,10 +36,7 @@ void test_pointer()
 {
      typename std::allocator_traits<Alloc>::pointer        vp;
      typename std::allocator_traits<Alloc>::const_pointer cvp;
-
-     ((void)vp); // Prevent unused warning
-     ((void)cvp); // Prevent unused warning
-
+     
      static_assert(std::is_same<bool, decltype( vp ==  vp)>::value, "");
      static_assert(std::is_same<bool, decltype( vp !=  vp)>::value, "");
      static_assert(std::is_same<bool, decltype( vp >   vp)>::value, "");
@@ -75,10 +70,7 @@ void test_void_pointer()
 {
      typename std::allocator_traits<Alloc>::void_pointer        vp;
      typename std::allocator_traits<Alloc>::const_void_pointer cvp;
-
-     ((void)vp); // Prevent unused warning
-     ((void)cvp); // Prevent unused warning
-
+     
      static_assert(std::is_same<bool, decltype( vp ==  vp)>::value, "");
      static_assert(std::is_same<bool, decltype( vp !=  vp)>::value, "");
      static_assert(std::is_same<bool, decltype( vp >   vp)>::value, "");
@@ -113,11 +105,11 @@ int main()
 {
     test_pointer<std::allocator<char>> ();
     test_pointer<std::allocator<int>> ();
-    test_pointer<std::allocator<Foo>> ();
+    test_pointer<std::allocator<Foo>> ();   
 
     test_void_pointer<std::allocator<char>> ();
     test_void_pointer<std::allocator<int>> ();
-    test_void_pointer<std::allocator<Foo>> ();
+    test_void_pointer<std::allocator<Foo>> ();  
 }
 #else
 int main() {}

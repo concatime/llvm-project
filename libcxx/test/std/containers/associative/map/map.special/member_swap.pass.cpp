@@ -96,7 +96,7 @@ int main()
         assert(m2 == m1_save);
     }
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
     typedef std::map<int, double, std::less<int>, min_allocator<V>> M;
     {

@@ -11,7 +11,6 @@
 
 #include <tuple>
 #include <utility>
-#include <memory>
 #include <string>
 #include <complex>
 #include <type_traits>

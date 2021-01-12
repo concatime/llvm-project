@@ -48,7 +48,7 @@ int main()
         assert(m.size() == 3);
         assert(*r.first == 3);
     }
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
     {
         typedef std::set<int, std::less<int>, min_allocator<int>> M;
         typedef std::pair<M::iterator, bool> R;

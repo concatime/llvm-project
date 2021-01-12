@@ -13,14 +13,12 @@
 //
 // istreambuf_iterator() throw();
 //
-// All specializations of istreambuf_iterator shall have a trivial copy constructor,
+// All specializations of istreambuf_iterator shall have a trivial copy constructor, 
 //    a constexpr default constructor and a trivial destructor.
 
 #include <iterator>
 #include <sstream>
 #include <cassert>
-
-#include "test_macros.h"
 
 int main()
 {
@@ -28,7 +26,7 @@ int main()
         typedef std::istreambuf_iterator<char> T;
         T it;
         assert(it == T());
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
         constexpr T it2;
 #endif
     }
@@ -36,7 +34,7 @@ int main()
         typedef std::istreambuf_iterator<wchar_t> T;
         T it;
         assert(it == T());
-#if TEST_STD_VER >= 11
+#if __cplusplus >= 201103L
         constexpr T it2;
 #endif
     }

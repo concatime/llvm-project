@@ -67,7 +67,6 @@ class Abstract
 };
 
 enum Enum {zero, one};
-struct incomplete_type;
 
 typedef void (*FunctionPtr)();
 
@@ -91,5 +90,4 @@ int main()
     test_is_not_union<bit_zero>();
     test_is_not_union<NotEmpty>();
     test_is_not_union<Abstract>();
-    test_is_not_union<incomplete_type>();
 }

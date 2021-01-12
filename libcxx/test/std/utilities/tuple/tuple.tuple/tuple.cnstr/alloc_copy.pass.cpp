@@ -52,8 +52,6 @@ int main()
         assert(alloc_last::allocator_constructed);
         assert(std::get<0>(t) == 2);
     }
-// testing extensions
-#ifdef _LIBCPP_VERSION
     {
         typedef std::tuple<alloc_first, alloc_last> T;
         T t0(2, 3);
@@ -77,5 +75,4 @@ int main()
         assert(std::get<1>(t) == 2);
         assert(std::get<2>(t) == 3);
     }
-#endif
 }

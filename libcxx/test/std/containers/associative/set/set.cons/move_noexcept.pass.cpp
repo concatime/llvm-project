@@ -15,8 +15,6 @@
 
 // This tests a conforming extension
 
-// UNSUPPORTED: c++98, c++03
-
 #include <set>
 #include <cassert>
 
@@ -28,11 +26,11 @@ struct some_comp
 {
     typedef T value_type;
     some_comp(const some_comp&);
-    bool operator()(const T&, const T&) const { return false; }
 };
 
 int main()
 {
+#if __has_feature(cxx_noexcept)
     {
         typedef std::set<MoveOnly> C;
         static_assert(std::is_nothrow_move_constructible<C>::value, "");
@@ -49,4 +47,5 @@ int main()
         typedef std::set<MoveOnly, some_comp<MoveOnly>> C;
         static_assert(!std::is_nothrow_move_constructible<C>::value, "");
     }
+#endif
 }

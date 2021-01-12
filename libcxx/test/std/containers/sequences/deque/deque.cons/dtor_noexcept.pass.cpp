@@ -11,13 +11,13 @@
 
 // ~deque() // implied noexcept;
 
-// UNSUPPORTED: c++98, c++03
-
 #include <deque>
 #include <cassert>
 
 #include "MoveOnly.h"
 #include "test_allocator.h"
+
+#if __has_feature(cxx_noexcept)
 
 template <class T>
 struct some_alloc
@@ -27,8 +27,11 @@ struct some_alloc
     ~some_alloc() noexcept(false);
 };
 
+#endif
+
 int main()
 {
+#if __has_feature(cxx_noexcept)
     {
         typedef std::deque<MoveOnly> C;
         static_assert(std::is_nothrow_destructible<C>::value, "");
@@ -45,4 +48,5 @@ int main()
         typedef std::deque<MoveOnly, some_alloc<MoveOnly>> C;
         static_assert(!std::is_nothrow_destructible<C>::value, "");
     }
+#endif
 }
