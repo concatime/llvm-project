@@ -149,7 +149,7 @@ private:
     template <typename T1>
     void Erase(const T1 *DR,
                llvm::function_ref<bool(const MallocOverflowCheck &)> Pred) {
-      auto P = [DR, Pred](const MallocOverflowCheck &Check) {
+      auto P = [&, DR, Pred](const MallocOverflowCheck &Check) {
         if (const auto *CheckDR = dyn_cast<T1>(Check.variable))
           return getDecl(CheckDR) == getDecl(DR) && Pred(Check);
         return false;
