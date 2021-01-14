@@ -137,8 +137,7 @@ if (NOT LLVM_INSTALL_TOOLCHAIN_ONLY)
     PATTERN .svn EXCLUDE
     PATTERN LLVMConfig.cmake EXCLUDE
     PATTERN LLVMConfigVersion.cmake EXCLUDE
-    PATTERN LLVM-Config.cmake EXCLUDE
-    PATTERN GetHostTriple.cmake EXCLUDE)
+    PATTERN LLVM-Config.cmake EXCLUDE)
 
   if (NOT LLVM_ENABLE_IDE)
     # Add a dummy target so this can be used with LLVM_DISTRIBUTION_COMPONENTS
